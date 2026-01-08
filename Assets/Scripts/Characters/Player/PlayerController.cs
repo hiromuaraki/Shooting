@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
   private InputHandler handler;
   
   // 起動(Unityがライフサイクルで自動で1回だけ呼ぶメソッド)
-  public void Awake()
+  private void Awake()
   {
     var gm = GameManager.Instance;
     movement = GetComponent<CharacterMovement>();
@@ -22,14 +22,14 @@ public class PlayerController : MonoBehaviour
   }
 
   // 他オブジェクトの初期化が終わった後の処理
-  void Start()
+  private void Start()
   {
     
   }
   // 状態更新
   // 毎フレームゲーム内の状態を更新
   // そのため毎フレーム呼ばれる
-  void Update()
+  private void Update()
   {
     Debug.Log($"Update呼ばれた TimeFrameCount={Time.frameCount}");
     // 2次元の位置（縦・横）を設定

@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-  void Start()
+  private void Start()
   {
     
   }
 
-  void Update()
+  private void Update()
   {
     
   }

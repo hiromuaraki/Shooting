@@ -15,13 +15,13 @@ public class Enemy : MonoBehaviour
   }
 
   // 他オブジェクトの初期化が終わった後の処理
-  void Start()
+  private void Start()
   {
     
   }
 
   // 状態更新
-  void Update()
+  private void Update()
   {
     // ザコ敵の移動
     movement.Move(Vector2.left, MoveSpeed);
