@@ -5,13 +5,13 @@ using UnityEditor.Callbacks;
 
 public class Enemy : MonoBehaviour
 {
-  private float MoveSpeed { get; set; }
-  private CharacterMovement movement;
+  private Moveable moveable;
+  private ScreenBounds screenBounds;
   private void Awake()
   {
     var gm = GameManager.Instance;
-    this.MoveSpeed = 2f;
-    movement = GetComponent<CharacterMovement>();
+    moveable = GetComponent<Moveable>();
+    screenBounds = GetComponent<ScreenBounds>();
   }
 
   // 他オブジェクトの初期化が終わった後の処理
@@ -24,10 +24,10 @@ public class Enemy : MonoBehaviour
   private void Update()
   {
     // ザコ敵の移動
-    transform.position = movement.CalculateMove(Vector2.left, this.MoveSpeed);
+    transform.position = moveable.Move(Vector2.left);
     
     // 画面の外まで進んだら消す
-    if (transform.position.x <= -10.0f)
+    if (screenBounds.IsOut(transform.position))
     {
       Destroy(this.gameObject);
     }

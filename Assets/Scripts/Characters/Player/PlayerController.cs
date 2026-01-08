@@ -6,8 +6,7 @@ using UnityEditor.Callbacks;
 public class PlayerController : MonoBehaviour
 {
 
-  private float MoveSpeed { get; set; }
-  private CharacterMovement movement;
+  private Moveable moveable;
   private InputHandler handler;
   private ScreenClamp screenClamp;
   
@@ -15,11 +14,9 @@ public class PlayerController : MonoBehaviour
   private void Awake()
   {
     var gm = GameManager.Instance;
-    movement = GetComponent<CharacterMovement>();
+    moveable = GetComponent<Moveable>();
     handler = GetComponent<InputHandler>();
     screenClamp = GetComponent<ScreenClamp>();
-
-    this.MoveSpeed = 4f;
   }
 
   // 他オブジェクトの初期化が終わった後の処理
@@ -35,7 +32,7 @@ public class PlayerController : MonoBehaviour
     // 2次元の位置（縦・横）を設定
     Vector2 input = handler.GetInput();
     // キャラクターの位置を更新
-    Vector3 pos = movement.CalculateMove(input, this.MoveSpeed);
+    Vector3 pos = moveable.Move(input);
     transform.position = screenClamp.Clamp(pos);
   }
 

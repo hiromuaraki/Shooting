@@ -5,13 +5,13 @@ using UnityEditor.Callbacks;
 
 public class Bullet : MonoBehaviour
 {
-  private float MoveSpeed { get; set; }
-  private CharacterMovement movement;
+  private Moveable moveable;
+  private ScreenBounds screenBounds;
 
   private void Awake()
   {
-    this.MoveSpeed = 10f;
-    movement = GetComponent<CharacterMovement>();
+    moveable = GetComponent<Moveable>();
+    screenBounds = GetComponent<ScreenBounds>();
   }
 
   private void Start()
@@ -21,8 +21,8 @@ public class Bullet : MonoBehaviour
 
   private void Update()
   {
-    transform.position = movement.CalculateMove(Vector2.right, this.MoveSpeed);
-    if (transform.position.x >= 10.0f)
+    transform.position = moveable.Move(Vector2.right);
+    if (screenBounds.IsOut(transform.position))
     {
       Destroy(this.gameObject);
     }

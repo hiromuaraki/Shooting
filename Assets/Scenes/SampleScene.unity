@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 671503808}
   - component: {fileID: 671503811}
   - component: {fileID: 671503810}
+  - component: {fileID: 671503812}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -447,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2070f6d97de17460499a4da580e5512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
+  speed: 2
 --- !u!114 &671503809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +534,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.87, y: 0.54}
   m_EdgeRadius: 0
+--- !u!114 &671503812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671503805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc60669af117348888e1a36b1c90f3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenBounds
+  min: {x: -10, y: -4.5}
+  max: {x: 8.5, y: 4.5}
 --- !u!1 &836677013
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +559,8 @@ GameObject:
   - component: {fileID: 836677015}
   - component: {fileID: 836677014}
   - component: {fileID: 836677016}
+  - component: {fileID: 836677017}
+  - component: {fileID: 836677018}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -636,6 +654,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65687533fe7e94b9a8594dc7fa72c143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
+--- !u!114 &836677017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836677013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2070f6d97de17460499a4da580e5512a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
+  speed: 10
+--- !u!114 &836677018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836677013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc60669af117348888e1a36b1c90f3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenBounds
+  min: {x: -10, y: 0}
+  max: {x: 10, y: 0}
 --- !u!1 &1224200890
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,12 +691,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1224200892}
   - component: {fileID: 1224200891}
-  - component: {fileID: 1224200893}
   - component: {fileID: 1224200894}
   - component: {fileID: 1224200895}
+  - component: {fileID: 1224200899}
+  - component: {fileID: 1224200898}
   - component: {fileID: 1224200897}
   - component: {fileID: 1224200896}
-  - component: {fileID: 1224200898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -733,18 +778,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1224200893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224200890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efc57cde67914f55bb0ea613b21d6e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!50 &1224200894
 Rigidbody2D:
   serializedVersion: 5
@@ -827,10 +860,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1224200890}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04238798aaea34a488db26580634c379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenClamp
+  min: {x: -8.4, y: -4.5}
+  max: {x: 8.4, y: 4.5}
+--- !u!114 &1224200897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224200890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2070f6d97de17460499a4da580e5512a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
---- !u!114 &1224200897
+  m_EditorClassIdentifier: Assembly-CSharp::Moveable
+  speed: 4
+--- !u!114 &1224200898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -842,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220f00606c00e4066818dc58a769f877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
---- !u!114 &1224200898
+--- !u!114 &1224200899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -851,11 +899,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1224200890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04238798aaea34a488db26580634c379, type: 3}
+  m_Script: {fileID: 11500000, guid: 3efc57cde67914f55bb0ea613b21d6e7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScreenClamp
-  min: {x: -8.4, y: -4.5}
-  max: {x: 8.4, y: 4.5}
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1001 &1586931637
 PrefabInstance:
   m_ObjectHideFlags: 0
