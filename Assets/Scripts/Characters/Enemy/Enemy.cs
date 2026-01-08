@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
   private void Awake()
   {
     var gm = GameManager.Instance;
+    this.MoveSpeed = 2f;
     movement = GetComponent<CharacterMovement>();
   }
 
@@ -23,7 +24,6 @@ public class Enemy : MonoBehaviour
   void Update()
   {
     // ザコ敵の移動
-    MoveSpeed = 2f;
     movement.Move(Vector2.left, MoveSpeed);
 
     // 画面の外まで進んだら消す
