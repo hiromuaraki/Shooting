@@ -24,8 +24,8 @@ public class Enemy : MonoBehaviour
   private void Update()
   {
     // ザコ敵の移動
-    movement.Move(Vector2.left, MoveSpeed);
-
+    transform.position = movement.CalculateMove(Vector2.left, this.MoveSpeed);
+    
     // 画面の外まで進んだら消す
     if (transform.position.x <= -10.0f)
     {

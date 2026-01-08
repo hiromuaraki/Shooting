@@ -6,20 +6,8 @@ using UnityEditor.Callbacks;
 public class CharacterMovement : MonoBehaviour
 {  
   // 移動処理
-  public void Move(Vector2 moveDirection, float moveSpeed, bool isPlayer=false)
+  public Vector3 CalculateMove(Vector2 direction, float speed)
   {
-    Vector3 pos = transform.position;
-    // キャラクターの座標を取得し現在位置の更新
-    pos += (Vector3)moveDirection * moveSpeed * Time.deltaTime;;
-    //キャラクターの位置が画面内に収まるように制限
-    if (isPlayer)
-    {
-      pos.x = Mathf.Clamp(pos.x, -8.4f, 8.4f);
-      pos.y = Mathf.Clamp(pos.y, -4.5f, 4.5f);
-    }
-
-    // キャラクターの位置を更新
-    transform.position = pos;
-    
+    return transform.position + (Vector3)(direction * speed * Time.deltaTime);
   }
 }

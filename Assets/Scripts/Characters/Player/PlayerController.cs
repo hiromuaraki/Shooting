@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
 
   private float MoveSpeed { get; set; }
-  private bool IsPlayer { get; set; }
   private CharacterMovement movement;
   private InputHandler handler;
   private ScreenClamp screenClamp;
@@ -21,7 +20,6 @@ public class PlayerController : MonoBehaviour
     screenClamp = GetComponent<ScreenClamp>();
 
     this.MoveSpeed = 4f;
-    this.IsPlayer = true;
   }
 
   // 他オブジェクトの初期化が終わった後の処理
@@ -34,12 +32,14 @@ public class PlayerController : MonoBehaviour
   // そのため毎フレーム呼ばれる
   private void Update()
   {
-    Debug.Log($"Update呼ばれた TimeFrameCount={Time.frameCount}");
     // 2次元の位置（縦・横）を設定
     Vector2 input = handler.GetInput();
-    movement.Move(input, MoveSpeed, IsPlayer);
+    // キャラクターの位置を更新
+    Vector3 pos = movement.CalculateMove(input, this.MoveSpeed);
+    transform.position = screenClamp.Clamp(pos);
   }
 
+  // 衝突判定
   private void OnTriggerEnter2D(Collider2D col)
   {
     var layerName = LayerMask.LayerToName(col.gameObject.layer);
