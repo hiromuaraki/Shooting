@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
   private bool IsPlayer { get; set; }
   private CharacterMovement movement;
   private InputHandler handler;
+  private ScreenClamp screenClamp;
   
   // 起動(Unityがライフサイクルで自動で1回だけ呼ぶメソッド)
   private void Awake()
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     var gm = GameManager.Instance;
     movement = GetComponent<CharacterMovement>();
     handler = GetComponent<InputHandler>();
+    screenClamp = GetComponent<ScreenClamp>();
+
     this.MoveSpeed = 4f;
     this.IsPlayer = true;
   }
