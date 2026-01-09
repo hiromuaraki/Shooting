@@ -27,4 +27,15 @@ public class Bullet : MonoBehaviour
       Destroy(this.gameObject);
     }
   }
+
+  private void OnTriggerEnter2D(Collider2D col)
+  {
+    // 衝突する相手のレイヤー名を取得
+    var layerName = LayerMask.LayerToName(col.gameObject.layer);
+    // 敵か障害物に衝突したら消える
+    if (layerName == "Enemy" || layerName == "Block")
+    {
+      Destroy(this.gameObject);
+    }   
+  }
 }
