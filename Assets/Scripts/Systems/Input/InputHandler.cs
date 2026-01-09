@@ -22,4 +22,10 @@ public class InputHandler : MonoBehaviour
       Input.GetAxisRaw("Vertical")
     ).normalized;
   }
+
+  // スペースキーの入力を受け取る
+  public bool GetInputBullet()
+  {
+    return Input.GetKeyDown(KeyCode.Space);
+  }
 }
