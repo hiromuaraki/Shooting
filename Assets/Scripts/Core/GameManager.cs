@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
   {
     Block, // 1. 障害物ウェーブ
     Enemy, // 2. ザコ敵ウェーブ
+    Boss,  // 3. ボス敵ウェーブ
   }
   // Blockのプレハブを呼び出す
   public GameObject BlockPrefab;
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
   
   // ザコ敵の出現間隔
   public float EnemyInterval; 
+
+  // Bossのプレハブを呼び出す
+  public GameObject BossPrefab;
 
   // ウェーブとウェーブの間の待ち時間
   public float WaveInterval;
@@ -69,9 +73,14 @@ public class GameManager : MonoBehaviour
       case Wave.Enemy: // ザコ敵
         UpdateEnemyWave();
         break;
+      case Wave.Boss:
+        UpdateBossWave();
+        break;
+      
     }
   }
 
+  // 障害物ウェーブ
   private void UpdateBlockWave()
   {
     // ゲーム内の経過時間を更新していく
@@ -107,6 +116,7 @@ public class GameManager : MonoBehaviour
     }
   }
 
+  // ザコ敵ウェーブ
   private void UpdateEnemyWave()
   {
     this.timeCount += Time.deltaTime;
@@ -117,7 +127,10 @@ public class GameManager : MonoBehaviour
       // ウェーブ待機時間を過ぎたら次のウェーブに進む
       if (this.timeCount >= WaveInterval)
       {
-        // 後からここに次のウェーブへ移行するスクリプトを追記
+        // ゲームの経過時間と出現数をリセット
+        DefeatCount = 0;
+        timeCount = 0;
+        this.currentWave = Wave.Boss;
       }
     }
     else
@@ -129,6 +142,18 @@ public class GameManager : MonoBehaviour
         Instantiate(EnemyPrefab, randomPos, Quaternion.identity);
         this.timeCount = 0;
       }
+    }
+  }
+
+  // ボス敵ウェーブ
+  private void UpdateBossWave()
+  {
+    // ボスはすぐに出てくるので時間カウントしない
+    // ボス敵は1体のみ
+    if (this.spawnCount == 0)
+    {
+      Instantiate(BossPrefab, new Vector3(15f, -0.5f, 0), Quaternion.identity);
+      this.spawnCount++;
     }
   }
 }
