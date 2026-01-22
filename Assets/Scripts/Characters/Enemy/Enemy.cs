@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
     if (layerName == "Bullet")
     {
       Destroy(this.gameObject);
+      GameManager.DefeatCount++;
     }   
   }
 }
