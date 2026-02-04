@@ -58,6 +58,8 @@ public class Boss : MonoBehaviour
     if (this.hp  == 0)
     {
       Destroy(this.gameObject);
+      // 条件が達成されたらテキストテキストにアタッチされているスクリプトへ点数加算が実行される。
+      GameObject.Find("Text").GetComponent<ScoreCounter>().AddScoreBoss();
     }
   }
 

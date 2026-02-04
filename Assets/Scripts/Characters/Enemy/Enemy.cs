@@ -42,6 +42,8 @@ public class Enemy : MonoBehaviour
     {
       Destroy(this.gameObject);
       GameManager.DefeatCount++;
+      // 条件が達成されたらテキストテキストにアタッチされているスクリプトへ点数加算が実行される。
+      GameObject.Find("Text").GetComponent<ScoreCounter>().AddScoreEnemy();
     }   
   }
 }
