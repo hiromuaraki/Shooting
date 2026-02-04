@@ -5,7 +5,7 @@ using UnityEditor.Callbacks;
 
 public class PlayerController : MonoBehaviour
 {
-
+  public GameObject Effect;
   private Moveable moveable;
   private InputHandler handler;
   private ScreenClamp screenClamp;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     if (layerName == "Enemy")
     {
       Destroy(this.gameObject);
+      Instantiate(Effect, transform.position, Quaternion.identity);
     }
   }
 }

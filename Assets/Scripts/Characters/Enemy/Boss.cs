@@ -5,6 +5,8 @@ using UnityEditor.Callbacks;
 
 public class Boss : MonoBehaviour
 {
+  
+  public GameObject Effect;
   // UnityのInspectorから設定
   [SerializeField] private int hp;
 
@@ -52,13 +54,17 @@ public class Boss : MonoBehaviour
     // 衝突相手のレイヤー名を取得
     var layerName = LayerMask.LayerToName(col.gameObject.layer);
     // ボスのHPを1ずつ減らす
-    if (layerName == "Bullet") this.hp--;
+    if (layerName == "Bullet")
+    {
+      this.hp--;
+      Instantiate(Effect, transform.position, Quaternion.identity);
+    }
     
     // HPが０になったらがボスを消す
     if (this.hp  == 0)
     {
       Destroy(this.gameObject);
-      // 条件が達成されたらテキストテキストにアタッチされているスクリプトへ点数加算が実行される。
+      // 条件が達成されたらテキストにアタッチされているスクリプトへ点数加算が実行される。
       GameObject.Find("Text").GetComponent<ScoreCounter>().AddScoreBoss();
     }
   }

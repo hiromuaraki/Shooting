@@ -5,6 +5,7 @@ using UnityEditor.Callbacks;
 
 public class Enemy : MonoBehaviour
 {
+  public GameObject Effect;
   private Moveable moveable;
   private ScreenBounds screenBounds;
   private void Awake()
@@ -42,8 +43,10 @@ public class Enemy : MonoBehaviour
     {
       Destroy(this.gameObject);
       GameManager.DefeatCount++;
-      // 条件が達成されたらテキストテキストにアタッチされているスクリプトへ点数加算が実行される。
+      // 条件が達成されたらテキストにアタッチされているスクリプトへ点数加算が実行される。
       GameObject.Find("Text").GetComponent<ScoreCounter>().AddScoreEnemy();
+      // 自分の位置に爆発エフェクトを表示する
+      Instantiate(Effect, transform.position, Quaternion.identity);
     }   
   }
 }

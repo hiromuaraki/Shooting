@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10bd774e07eae43059a8320a78300fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
+  Effect: {fileID: 7745547977431993789, guid: 0a0ed4502249f4fc0a8e901a4c945946, type: 3}
   hp: 20
 --- !u!114 &-3702090795858895766
 MonoBehaviour:

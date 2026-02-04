@@ -5,8 +5,8 @@ using UnityEditor.Callbacks;
 
 public class ScoreCounter : MonoBehaviour
 {
-    [SerializeField] private int score;
-    [SerializeField] private int enymyDamage;
+    private int score;
+    [SerializeField] private int enemyDamage;
     [SerializeField] private int bossDamage;
     Text textComponent;
 
@@ -17,17 +17,17 @@ public class ScoreCounter : MonoBehaviour
     this.textComponent.text = "Score " + this.score.ToString();
   }
 
+  // ザコ敵を倒したら100点
   public void AddScoreEnemy()
   {
-    // ザコ敵を倒したら100点
-    this.score += this.enymyDamage;
-    this.textComponent.text = "Score" + this.score.ToString();
+    this.score += this.enemyDamage;
+    this.textComponent.text = "Score " + this.score.ToString();
   }
 
   // ボスを倒したら5000点
   public void AddScoreBoss()
   {
     this.score += bossDamage;
-    this.textComponent.text = "Score" + this.score.ToString();
+    this.textComponent.text = "Score " + this.score.ToString();
   }
 }
