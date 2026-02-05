@@ -1148,6 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efc57cde67914f55bb0ea613b21d6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  Effect: {fileID: 7745547977431993789, guid: 0a0ed4502249f4fc0a8e901a4c945946, type: 3}
 --- !u!114 &1224200900
 MonoBehaviour:
   m_ObjectHideFlags: 0
